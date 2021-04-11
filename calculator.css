@@ -1,7 +1,13 @@
 body {
     background-color: black;
 }
-
+.err {
+    color:black;
+    font-family:'Avenir.otf',sans-serif;
+    position:absolute;
+    user-select: none;
+    font-size:40px;
+}
 .numbers {
     font-size:34px;
     font-family:'Avenir.otf',sans-serif;

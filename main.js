@@ -19,9 +19,10 @@ var div = document.getElementById('/');
 var mul = document.getElementById('x');
 var equals = document.getElementById('=');
 var clear = document.getElementById('c');
+var err = document.getElementById('err');
 
 oplist.push(add);oplist.push(sub);
-oplist.push(div);oplist.push(mul);oplist.push(equals);
+oplist.push(div);oplist.push(mul);
 
 var result = document.getElementById('textbox');
 elemlist.forEach((elem) =>{
@@ -46,6 +47,7 @@ oplist.forEach((elem) => {
             firstnum = Number(result.innerHTML);
             isopcurrent = [true,false];
             result.innerHTML = currentop;
+            thing = false;
         }
     });
 });
@@ -65,6 +67,14 @@ equals.addEventListener('mousedown',() => {
                 break;
         }
         result.innerHTML = answer;
+        if(result.innerHTML.length>=13) {
+            err.style.left = `${visualViewport.width/2-30}px`;
+            err.style.top = `${visualViewport.height/2-125}px`
+            err.style.color = 'red';
+            result.innerHTML = result.innerHTML.substring(0,12);
+        } else {
+            err.style.color = 'black';
+        }
         thing = false;
     }
 });
@@ -73,4 +83,5 @@ clear.addEventListener('mousedown',function(){
     result.innerHTML = '';
     isopcurrent = [false,true];
     thing = false;
+    err.style.color = 'black';
 });
