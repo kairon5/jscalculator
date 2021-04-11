@@ -5,6 +5,7 @@ var firstnum;//this is for when an operator is clicked
 //the textbox will be cleared and the value will be saved here
 var isopcurrent = [false,false];
 var currentop;
+var thing = false;
 
 for(var i = 0;i < 10;i++) {
     //since the id's of the number divs are numbered this approach works
@@ -26,8 +27,9 @@ var result = document.getElementById('textbox');
 elemlist.forEach((elem) =>{
     elem.addEventListener('mousedown',() => {
         if(result.innerHTML.length<13) {
-            if(isopcurrent[0]) {
+            if(isopcurrent[0] &&!thing) {
                 result.innerHTML = result.innerHTML.substring(1,result.innerHTML.length);
+                thing = true;
             }
             if(isopcurrent[1]) {
                 result.innerHTML = '';
@@ -63,10 +65,12 @@ equals.addEventListener('mousedown',() => {
                 break;
         }
         result.innerHTML = answer;
+        thing = false;
     }
 });
 
 clear.addEventListener('mousedown',function(){
     result.innerHTML = '';
     isopcurrent = [false,true];
+    thing = false;
 });
