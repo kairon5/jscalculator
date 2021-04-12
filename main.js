@@ -37,6 +37,8 @@ var minus = document.getElementById('m');
 var modular = document.getElementById('%');
 var dot = document.getElementById('.');
 
+elemlist.push(dot);
+
 oplist.push(add);oplist.push(sub);oplist.push(modular);
 oplist.push(div);oplist.push(mul);
 
@@ -109,24 +111,17 @@ clear.addEventListener('mousedown',() => {
     cleared = true;
 });
 del.addEventListener('mousedown',() => {
-    if(!completecurrent && result.innerHTML.length>=1) {
+    if(!completecurrent && result.innerHTML.length>=1 && !isopcurrent[1]) {
         result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-1);
         completecurrent = false;
+        if(result.innerHTML.length<=18) {
+            err.style.color = 'black';
+        }
     }
 });
 minus.addEventListener('mousedown',() => {
     if(result.innerHTML.length>=1 && !completecurrent && result.innerHTML[0] != '-') {
         result.innerHTML = '-'+result.innerHTML;
-        completecurrent = false;
-    }
-});
-dot.addEventListener('mousedown',() => {
-    if(result.innerHTML.indexOf('.')==-1) {
-        if(completecurrent) {
-            result.innerHTML = result.innerHTML.substring(1,result.innerHTML.length);
-            thing = true;
-        }
-        result.innerHTML += '.';
         completecurrent = false;
     }
 });
